@@ -31,4 +31,7 @@ class HomeController extends Controller
     $product = $this->productServices->find($id);
     return view('pages.detail_product',compact('product'));
    }
+   public function success(){
+    return view('pages.order_success');
+   }
 }

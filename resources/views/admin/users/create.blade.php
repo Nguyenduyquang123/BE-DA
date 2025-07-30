@@ -31,20 +31,21 @@
                     <h4 class="card-title">Thêm người dùng</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.users.store') }}"  enctype="multipart/form-data">
                         @csrf
+                      @method('POST')
                         <div class="mb-3">
-                            <label for="name" class="form-label">Tên danh người dùng</label>
-                            <input type="text" class="form-control" id="name" name="fullname"
+                            <label for="name" class="form-label">Fullname</label>
+                            <input type="text" class="form-control" id="name" name="fulllname"
                                 value="">
-                              @error('fullname')
+                              @error('fulllname')
                                 <small class="text-danger">{{ $message }}</small>
                               @enderror
                         
                         </div>
                           <div class="mb-3">
                             <label for="description" class="form-label">gender</label>
-                            <input type="text" class="form-control" id="slug" name="gender	"
+                            <input type="text" class="form-control" id="slug" name="gender"
                               ></input>
                               @error('phone')
                                 <small class="text-danger">{{ $message }}</small>
@@ -61,24 +62,35 @@
                         </div>
                           <div class="mb-3">
                             <label for="description" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="slug" name="email"
+                            <input type="text" class="form-control" id="slug" name="Email"
                               ></input>
-                              @error('email')
+                              @error('Email')
                                 <small class="text-danger">{{ $message }}</small>
                               @enderror
                           
                         </div>
+                                
                         <div class="mb-3">
-                            <label for="status" class="form-label">Trạng thái</label>
-                            <select class="form-select" id="status" name="status">
-                                <option value="">Chọn trạng thái</option>
-                                <option value="active">active</option>
-                                <option value="inactive">inactive</option>
-                            </select>
-                               @error('status')
-                                <small class="text-danger">{{ $message }}</small>
-                              @enderror
-                            
+                          <label for="description" class="form-label">Address</label>
+                          <input type="text" class="form-control" id="slug" name="address"
+                            ></input>
+                            @error('address')
+                              <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        
+                      </div>
+                      <div class="mb-3">
+                          <label for="status" class="form-label">Trạng thái</label>
+                          <select class="form-select" id="status" name="status">
+                              <option value="">Chọn trạng thái</option>
+                              <option value="active">active</option>
+                              <option value="inactive">inactive</option>
+                          </select>
+                             @error('status')
+                              <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          
+                      </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Thêm mới</button>
                     </form>

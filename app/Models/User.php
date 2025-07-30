@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = ['fullname','gender','phone','email','address'];
+    protected $fillable = ['fulllname','gender','phone','Email','address'];
 
     public function Ratings()  {
         return $this->hasMany(Ratings::class);

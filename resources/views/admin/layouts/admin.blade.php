@@ -97,13 +97,14 @@
                 </span>
                 <h4 class="text-section">Components</h4>
               </li>
+              
                <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#base">
-                  <i class="fas fa-layer-group"></i>
+                <a data-bs-toggle="collapse" href="#forms">
+                  <i class="fas fa-pen-square"></i>
                   <p>Người dùng</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="base">
+                <div class="collapse" id="forms">
                   <ul class="nav nav-collapse">
                     <li>
                       <a href="{{ route('admin.users.index') }}">
@@ -115,8 +116,6 @@
                         <span class="sub-item">Thêm Người dùng</span>
                       </a>
                     </li>
-                
-                   
                   </ul>
                 </div>
               </li>
@@ -165,44 +164,28 @@
                   </ul>
                 </div>
               </li>
-              {{-- <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#forms">
-                  <i class="fas fa-pen-square"></i>
-                  <p>Forms</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="forms">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="forms/forms.html">
-                        <span class="sub-item">Basic Form</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#tables">
                   <i class="fas fa-table"></i>
-                  <p>Tables</p>
+                  <p>Đặt hàng</p>
                   <span class="caret"></span>
                 </a>
                 <div class="collapse" id="tables">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="tables/tables.html">
-                        <span class="sub-item">Basic Table</span>
+                      <a href=" {{route('admin.orders.index')}} ">
+                        <span class="sub-item">Danh sách đặt hàng</span>
                       </a>
                     </li>
                     <li>
                       <a href="tables/datatables.html">
-                        <span class="sub-item">Datatables</span>
+                        <span class="sub-item">Thêm đặt hàng </span>
                       </a>
                     </li>
                   </ul>
                 </div>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#maps">
                   <i class="fas fa-map-marker-alt"></i>
                   <p>Maps</p>
@@ -308,7 +291,7 @@
                     </li>
                   </ul>
                 </div>
-              </li> --}}
+              </li>  --}}
             </ul>
           </div>
         </div>
@@ -990,6 +973,7 @@
             fillColor: "rgba(255, 165, 52, .14)",
         });
     </script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -142,34 +142,36 @@
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Email</th>
-                            <th>Status</th>
+                            <th>Address</th>
                             <th style="width: 10%">Action</th>
                           </tr>
                         </thead>
                        
                         <tbody>
-                       
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                              <form action=""
-                                  method="POST" class="d-flex align-items-center">
-                                  @csrf
-                                  @method('DELETE')
-                                  <a class="btn btn-link btn-primary btn-lg"
-                                  href="">
-                                    <i class="fa fa-edit"></i>
-                                  </a>
-                                  <button type="submit" class="btn btn-link btn-danger delete-button"
-                                    onclick=" return confirm('Bạn có chắc chắn muốn xóa danh mục này không?')">
-                                    <i class="fa fa-trash"></i>
-                                  </button>
-                                </form>
-                            </td>
-                          </tr>                      
+                        @foreach ($users as $user) 
+                        <tr>
+                          <td>{{ $user->fulllname }}</td>
+                          <td> {{$user->phone}}</td>
+                          <td> {{$user->email}} </td>
+                          <td> {{$user->address}} </td>
+                          <td>
+                            <form action=""
+                                method="POST" class="d-flex align-items-center">
+                                @csrf
+                                @method('DELETE')
+                                <a class="btn btn-link btn-primary btn-lg"
+                                href="">
+                                  <i class="fa fa-edit"></i>
+                                </a>
+                                <button type="submit" class="btn btn-link btn-danger delete-button"
+                                  onclick=" return confirm('Bạn có chắc chắn muốn xóa danh mục này không?')">
+                                  <i class="fa fa-trash"></i>
+                                </button>
+                              </form>
+                          </td>
+                        </tr>                      
+
+                        @endforeach
                       
                          
                         </tbody>

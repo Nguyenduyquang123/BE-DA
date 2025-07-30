@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersRequest;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -12,9 +13,17 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+      protected UserService $user;
+    public function __construct(UserService $user)
+    {
+        $this->user = $user;
+    }
+
     public function index()
     {
-        return view('admin.users.index');
+        $users = $this->user->all();
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -30,7 +39,7 @@ class UsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
-        
+        $this->user->create($request->validated());
         return redirect()->route('admin.users.index')->with('success', 'Thêm thành công.');
     }
 

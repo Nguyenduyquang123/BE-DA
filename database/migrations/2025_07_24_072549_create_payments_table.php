@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('orders_id');
             $table->enum('payment', ["Cash on Delivery", "Online Payment","installment"]);
             $table->dateTime('paid');
             $table->string('status')->default(EnumCommonStatus::Active->value);

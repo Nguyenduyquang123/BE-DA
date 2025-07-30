@@ -2,6 +2,7 @@
 
 use App\CommonStatus;
 use App\enum\CommonStatus as EnumCommonStatus;
+use App\enum\OrderConfirmationStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +22,8 @@ return new class extends Migration
             $table->foreign('payments_id')->references('id')->on('payments');
             $table->decimal('total_price');
             $table->decimal('sale_price');
+            $table->enum('confirmation_status', OrderConfirmationStatus::values())
+                ->default(OrderConfirmationStatus::ChoXacNhan->value);
             $table->string('status')->default(EnumCommonStatus::Active->value);
             $table->timestamps();
         });
