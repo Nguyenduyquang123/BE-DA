@@ -28,7 +28,7 @@ class CartController extends Controller
     }
 
     public function update(Request $request)
-    {
+    {   
         $result = $this->cartService->updateQuantity($request->id, $request->type);
         return response()->json($result);
     }

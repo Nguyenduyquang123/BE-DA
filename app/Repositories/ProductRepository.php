@@ -13,7 +13,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     }
     public function getProductWithCategoryById($id)
     {
-        return DB::table('products')
+        return $this->model
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->where('products.id', $id)
         ->select(
@@ -25,7 +25,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     }
     public function getProductWithCategory()
     {
-        return DB::table('products')
+        return  $this->model
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->select(
             'products.*',

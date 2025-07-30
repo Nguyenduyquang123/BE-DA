@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('fulllname');
             $table->string('gender');
             $table->string('phone');
-            $table->string('Email');
+            $table->string('Email')->nullable();
             $table->string('address');
             $table->string('status')->default(EnumCommonStatus::Active->value);
             $table->timestamps();

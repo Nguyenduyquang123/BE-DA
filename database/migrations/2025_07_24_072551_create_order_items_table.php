@@ -11,16 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->unsignedInteger('orders_id');
-            $table->foreign('orders_id')->references('id')->on('orders');
-            $table->decimal('price');
-            $table->integer('quantity');
-            $table->timestamps();
-        });
+    Schema::create('order_items', function (Blueprint $table) {
+        $table->increments('id');
+
+        $table->unsignedInteger('product_id');
+        $table->foreign('product_id')->references('id')->on('products');
+
+        $table->unsignedInteger('orders_id');
+        $table->foreign('orders_id')
+            ->references('id')->on('orders')
+            ->onDelete('cascade'); // ✅ Thêm dòng này
+
+        $table->decimal('price');
+        $table->integer('quantity');
+        $table->timestamps();
+    });
     }
 
     /**

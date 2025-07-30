@@ -11,7 +11,7 @@ class OrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,13 +21,18 @@ class OrderRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'gender'=>'required|string',
-            'fullname' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'cyti'=>'required|string',
-            'address' => 'required|string',
+       return [
+        'gender' => 'required|string|in:Anh,Chị', 
+        'fulllname' => 'required|string|max:255',
+        'phone' => 'required|string|max:15',
+        'city' => 'required|string',
+        'address' => 'required|string|max:255',
+        'payment_method' => 'required|string|in:Cash on Delivery,Online Payment,Installment',
 
-        ];
+        'products' => 'required|array|min:1',
+        'products.*.product_id' => 'required|integer|exists:products,id',
+        'products.*.quantity' => 'required|integer|min:1',
+        'products.*.price' => 'required|numeric|min:0',
+    ];
     }
 }

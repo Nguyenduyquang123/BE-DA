@@ -9,7 +9,7 @@ class payments extends Model
 {
     /** @use HasFactory<\Database\Factories\PaymentsFactory> */
     use HasFactory;
-    protected $fillable =['orders_id', 'payment', 'paid'];
+    protected $fillable =['payment', 'paid'];
 
     public function Orders(){
         return $this->belongsTo(Orders::class);

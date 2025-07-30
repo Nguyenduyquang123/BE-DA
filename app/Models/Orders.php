@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\enum\OrderConfirmationStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,8 +10,11 @@ class Orders extends Model
 {
     /** @use HasFactory<\Database\Factories\OrdersFactory> */
     use HasFactory;
-    protected $fillable =['user_id', 'payments_id', 'total_price', 'sale_price'];
+    protected $fillable =['user_id', 'payments_id', 'total_price', 'sale_price', 'confirmation_status'];
 
+    protected $casts = [
+        'confirmation_status' => OrderConfirmationStatus::class,
+    ];
     public function User(){
         return $this->belongsTo(User::class);
     }

@@ -122,7 +122,7 @@
               <label><input type="radio" name="gender" value="Chị"> Chị</label>
             </div>
             <div class="flex flex-col sm:flex-row gap-4">
-              <input type="text" name="fullname" placeholder="Họ và tên" class="w-full sm:w-1/2 px-4 py-2 border border-[#B6B6B6]  bg-white">
+              <input type="text" name="fulllname" value="{{ old('fullname') }}" placeholder="Họ và tên" class="w-full sm:w-1/2 px-4 py-2 border border-[#B6B6B6]  bg-white">
               <input type="text" name="phone" placeholder="Số điện thoại" class="w-full sm:w-1/2 px-4 py-2 border  border-[#B6B6B6]  bg-white">
             </div>
             <h3 class="text-xl font-bold mb-4 mt-[35px]">Phương thức thanh toán</h3>
@@ -207,15 +207,15 @@
               <input type="hidden" name="products[{{ $item['id'] }}][quantity]" value="{{ $item['quantity'] }}">
               <input type="hidden" name="products[{{ $item['id'] }}][price]" value="{{ $item['price'] }}">
             @endforeach
-
+          <input type="hidden" name="payment_method" id="payment_method">
           <div class="flex flex-col sm:flex-row justify-center gap-6 mt-8 mb-4">
-            <button type="submit" name="payment_method" value="COD"  class="cursor-pointer w-full sm:w-1/3 bg-gradient-to-b from-[#FA5754] to-[#DE0200] text-white font-bold px-4 py-4 rounded shadow-md">
+            <button type="button" onclick="submitPayment('Cash on Delivery')"  class="cursor-pointer w-full sm:w-1/3 bg-gradient-to-b from-[#FA5754] to-[#DE0200] text-white font-bold px-4 py-4 rounded shadow-md">
               THANH TOÁN KHI NHẬN HÀNG<br><span class="font-normal text-base">Kiểm tra hàng trước khi trả tiền</span>
             </button>
-            <button type="submit" name="payment_method" value="Online" class="cursor-pointer w-full sm:w-1/3 bg-gradient-to-b from-[#FA5754] to-[#DE0200] text-white font-bold px-4 py-4 rounded shadow-md">
+            <button type="button" onclick="submitPayment('Online Payment')" class="cursor-pointer w-full sm:w-1/3 bg-gradient-to-b from-[#FA5754] to-[#DE0200] text-white font-bold px-4 py-4 rounded shadow-md">
               THANH TOÁN ONLINE<br><span class="font-normal text-base">Bằng thẻ Visa, master, JCB</span>
             </button>
-            <button type="submit" name="payment_method" value="Installment" class="cursor-pointer w-full sm:w-1/3 bg-gradient-to-b from-[#6BA8F7] to-[#1B76EB] text-white font-bold px-4 py-4 rounded shadow-md">
+            <button type="button" onclick="submitPayment('Installment')" class="cursor-pointer w-full sm:w-1/3 bg-gradient-to-b from-[#6BA8F7] to-[#1B76EB] text-white font-bold px-4 py-4 rounded shadow-md">
               THANH TOÁN TRẢ GÓP<br><span class="font-normal text-base">Công ty Tài chính Hoặc qua thẻ tín dụng</span>
             </button>
           </div>
@@ -223,6 +223,12 @@
 
         <a href="#" class="text-center block underline underline-offset-4 text-lg text-gray-700 mb-10">Mua thêm sản phẩm khác</a>
 </div>
+<script>
+function submitPayment(method) {
+    document.getElementById('payment_method').value = method;
+    document.querySelector('form').submit();
+}
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
         function formatPrice(price) {

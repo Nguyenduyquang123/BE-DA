@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\Services\OrderServices;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -10,6 +11,11 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected OrderServices $orderService;
+    public function __construct(OrderServices $orderService)
+    {
+        $this->orderService = $orderService;
+    }
     public function index()
     {
         //
@@ -27,8 +33,13 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(OrderRequest $request)
-    {
-        //
+    {   
+         $data = $request->validated();
+        $this->orderService->create($data);
+
+        session()->forget('cart');
+
+        return redirect()->route('order.success');
     }
 
     /**
